@@ -5,6 +5,7 @@ import Users from './collections/Users';
 import Restaurants from './collections/Restaurants';
 import Categories from './collections/Categories';
 import Items from './collections/Items';
+import Additives from './collections/Additives';
 
 export default buildConfig({
   serverURL: 'http://localhost:3000',
@@ -16,8 +17,7 @@ export default buildConfig({
     Restaurants,
     Categories,
     Items,
-    // Add Collections here
-    // Examples,
+    Additives,
   ],
   typescript: {
     outputFile: path.resolve(__dirname, 'payload-types.ts'),

@@ -1,8 +1,6 @@
-import { FilterOptionsProps } from 'payload/dist/fields/config/types';
 import { CollectionConfig } from 'payload/types';
 import { anyoneIsAllowed } from '../access/generalAccess';
-import { isAdmin, isAdminFieldLevel } from '../access/isAdmin';
-import { Item, Restaurant, User } from '../payload-types';
+import { Item, User } from '../payload-types';
 
 const Items: CollectionConfig = {
   slug: 'items',
@@ -19,6 +17,26 @@ const Items: CollectionConfig = {
     {
         name: 'name',
         type: 'text',
+    },
+    {
+      name: 'description',
+      type: 'text',
+    },
+    {
+      name: 'price',
+      type: 'number',
+      defaultValue: 0
+    },
+    {
+      name: 'additives',
+      type: 'relationship',
+      relationTo: 'additives',
+      hasMany: true,
+    },
+    {
+      name: 'published',
+      type: 'checkbox',
+      defaultValue: true,
     },
     {
       name: 'restaurant',
