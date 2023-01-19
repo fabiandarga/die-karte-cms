@@ -2,6 +2,9 @@ import { buildConfig } from 'payload/config';
 import path from 'path';
 // import Examples from './collections/Examples';
 import Users from './collections/Users';
+import Restaurants from './collections/Restaurants';
+import Categories from './collections/Categories';
+import Items from './collections/Items';
 
 export default buildConfig({
   serverURL: 'http://localhost:3000',
@@ -10,6 +13,9 @@ export default buildConfig({
   },
   collections: [
     Users,
+    Restaurants,
+    Categories,
+    Items,
     // Add Collections here
     // Examples,
   ],
