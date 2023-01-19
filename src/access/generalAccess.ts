@@ -1,3 +1,3 @@
 import { Access } from "payload/types";
 
-export const anyoneIsAllowed: Access<any, any> = () => true
+export const anyoneMayAccess: Access<any, any> = () => true

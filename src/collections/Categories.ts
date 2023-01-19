@@ -1,6 +1,4 @@
 import { CollectionConfig } from 'payload/types';
-import { anyoneIsAllowed } from '../access/generalAccess';
-import { isAdmin, isAdminFieldLevel } from '../access/isAdmin';
 import { isAdminOrOwner } from '../access/isAdminOrOwner';
 import { isAdminOrOwnerOrAPI } from '../access/isAdminOrOwnerOrAPI';
 import { User } from '../payload-types';

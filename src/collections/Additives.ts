@@ -1,4 +1,5 @@
 import { CollectionConfig } from "payload/types";
+import { anyoneMayAccess } from "../access/generalAccess";
 import { isAdmin } from "../access/isAdmin";
 
 const Additives: CollectionConfig = {
@@ -8,7 +9,7 @@ const Additives: CollectionConfig = {
     },
     access: {
         create: isAdmin,
-        read: isAdmin,
+        read: anyoneMayAccess,
         update: isAdmin,
         delete: isAdmin,
     },

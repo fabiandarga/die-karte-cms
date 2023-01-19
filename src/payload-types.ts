@@ -29,6 +29,24 @@ export interface User {
 export interface Restaurant {
   id: string;
   name?: string;
+  prefix?: string;
+  logoUrl?: string;
+  contact: {
+    telephone?: string;
+    fax?: string;
+    email?: string;
+  };
+  address: {
+    line?: string;
+    id?: string;
+  }[];
+  socialmedia: {
+    facebook?: string;
+    twitter?: string;
+    instagram?: string;
+    linkedin?: string;
+    tiktok?: string;
+  };
   createdAt: string;
   updatedAt: string;
 }
