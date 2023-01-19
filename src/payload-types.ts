@@ -39,6 +39,7 @@ export interface Restaurant {
 export interface Category {
   id: string;
   name?: string;
+  published?: boolean;
   restaurant: string | Restaurant;
   createdAt: string;
   updatedAt: string;
@@ -50,8 +51,24 @@ export interface Category {
 export interface Item {
   id: string;
   name?: string;
-  category?: string | Category;
+  description?: string;
+  price?: number;
+  additives?: string[] | Additive[];
+  published?: boolean;
   restaurant: string | Restaurant;
+  category?: string | Category;
+  createdAt: string;
+  updatedAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "additives".
+ */
+export interface Additive {
+  id: string;
+  name?: string;
+  publicId?: string;
+  type?: 'additive' | 'allergen';
   createdAt: string;
   updatedAt: string;
 }

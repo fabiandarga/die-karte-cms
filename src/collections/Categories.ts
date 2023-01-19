@@ -1,6 +1,8 @@
 import { CollectionConfig } from 'payload/types';
 import { anyoneIsAllowed } from '../access/generalAccess';
 import { isAdmin, isAdminFieldLevel } from '../access/isAdmin';
+import { isAdminOrOwner } from '../access/isAdminOrOwner';
+import { isAdminOrOwnerOrAPI } from '../access/isAdminOrOwnerOrAPI';
 import { User } from '../payload-types';
 
 const Categories: CollectionConfig = {
@@ -9,15 +11,20 @@ const Categories: CollectionConfig = {
     useAsTitle: 'name',
   },
   access: {
-    create: anyoneIsAllowed,
-    read: anyoneIsAllowed,
-    update: anyoneIsAllowed,
-    delete: isAdmin,
+    create: isAdminOrOwner(),
+    read: isAdminOrOwnerOrAPI,
+    update: isAdminOrOwner(),
+    delete: isAdminOrOwner(),
   },
   fields: [
     {
         name: 'name',
         type: 'text',
+    },
+    {
+      name: 'published',
+      type: 'checkbox',
+      defaultValue: true,
     },
     {
         name: 'restaurant',

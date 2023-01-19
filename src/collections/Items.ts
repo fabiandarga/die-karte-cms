@@ -1,5 +1,7 @@
 import { CollectionConfig } from 'payload/types';
-import { anyoneIsAllowed } from '../access/generalAccess';
+import { isAdminOrHasMultipleRestaurants } from '../access/isAdminOrHasMultipleRestaurants';
+import { isAdminOrOwner } from '../access/isAdminOrOwner';
+import { isAdminOrOwnerOrAPI } from '../access/isAdminOrOwnerOrAPI';
 import { Item, User } from '../payload-types';
 
 const Items: CollectionConfig = {
@@ -8,10 +10,10 @@ const Items: CollectionConfig = {
     useAsTitle: 'name',
   },
   access: {
-    create: anyoneIsAllowed,
-    read: anyoneIsAllowed,
-    update: anyoneIsAllowed,
-    delete: anyoneIsAllowed,
+    create: isAdminOrOwner(),
+    read: isAdminOrOwnerOrAPI,
+    update: isAdminOrOwner(),
+    delete: isAdminOrOwner(),
   },
   fields: [
     {
@@ -48,7 +50,11 @@ const Items: CollectionConfig = {
           if (user.role !== 'admin' && user.restaurants?.length > 0) {
               return user.restaurants[0];
           }
-      }
+      },
+      access: {
+        create: isAdminOrHasMultipleRestaurants,
+        update: isAdminOrHasMultipleRestaurants,
+      },
     },
     {
         name: 'category',
