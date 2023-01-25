@@ -3,7 +3,8 @@ import path from 'path';
 import { Categories, Users, Restaurants, Items, Additives } from './collections';
 
 export default buildConfig({
-  serverURL: 'http://localhost:3000',
+  serverURL: 'http://localhost:4000',
+  cors: '*',
   admin: {
     user: Users.slug,
   },
