@@ -1,6 +1,7 @@
 import { CollectionConfig } from 'payload/types';
 import { isAdmin } from '../access/isAdmin';
 import { isAdminOrOwner } from '../access/isAdminOrOwner';
+import { isAdminOrOwnerOrAPI } from '../access/isAdminOrOwnerOrAPI';
 
 const Restaurants: CollectionConfig = {
   slug: 'restaurants',
@@ -9,7 +10,7 @@ const Restaurants: CollectionConfig = {
   },
   access: {
     create: isAdmin,
-    read: isAdminOrOwner('id'),
+    read: isAdminOrOwnerOrAPI('id'),
     update: isAdminOrOwner('id'),
     delete: isAdmin,
   },

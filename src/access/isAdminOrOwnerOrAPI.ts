@@ -1,10 +1,13 @@
 import { Access } from "payload/types";
 import { User } from "../payload-types";
 
-export const isAdminOrOwnerOrAPI: Access<any, User> = ({req: { user, payloadAPI }}) => {
+export const isAdminOrOwnerOrAPI = (idFieldName: string = 'restaurant'): Access<any, User> => ({req: { user, payloadAPI }}) => {
     if (payloadAPI === 'REST') {
       return true;
     }
+    if (!user){
+      return false;
+  }
     if (user.role === 'admin') {
       return true;
     }
@@ -12,7 +15,7 @@ export const isAdminOrOwnerOrAPI: Access<any, User> = ({req: { user, payloadAPI 
       return false;
     }
     return {
-      restaurant: {
+      [idFieldName]: {
         in: user.restaurants?.map(r => typeof r === 'string' ? r : r.id)
       }
     }

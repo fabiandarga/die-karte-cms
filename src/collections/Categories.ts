@@ -10,31 +10,31 @@ const Categories: CollectionConfig = {
   },
   access: {
     create: isAdminOrOwner(),
-    read: isAdminOrOwnerOrAPI,
+    read: isAdminOrOwnerOrAPI(),
     update: isAdminOrOwner(),
     delete: isAdminOrOwner(),
   },
   fields: [
     {
-        name: 'name',
-        type: 'text',
-    },
+      name: 'name',
+      type: 'text',
+  },
     {
       name: 'published',
       type: 'checkbox',
       defaultValue: true,
     },
     {
-        name: 'restaurant',
-        type: 'relationship',
-        relationTo: 'restaurants',
-        hasMany: false,
-        required: true,
-        defaultValue: ({ user }: { user: User }) => {
-            if (user.role !== 'admin' && user.restaurants?.length > 0) {
-                return user.restaurants[0];
-            }
-        }
+      name: 'restaurant',
+      type: 'relationship',
+      relationTo: 'restaurants',
+      hasMany: false,
+      required: true,
+      defaultValue: ({ user }: { user: User }) => {
+          if (user.role !== 'admin' && user.restaurants?.length > 0) {
+              return user.restaurants[0];
+          }
+      }
     },
   ],
 };

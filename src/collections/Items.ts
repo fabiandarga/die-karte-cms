@@ -11,7 +11,7 @@ const Items: CollectionConfig = {
   },
   access: {
     create: isAdminOrOwner(),
-    read: isAdminOrOwnerOrAPI,
+    read: isAdminOrOwnerOrAPI(),
     update: isAdminOrOwner(),
     delete: isAdminOrOwner(),
   },
