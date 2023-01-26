@@ -5,6 +5,10 @@ import { User } from '../payload-types';
 
 const Categories: CollectionConfig = {
   slug: 'categories',
+  labels: { 
+    singular: 'Kategorie', 
+    plural: 'Kategorien'
+  },
   admin: {
     useAsTitle: 'name',
   },
@@ -18,15 +22,27 @@ const Categories: CollectionConfig = {
     {
       name: 'name',
       type: 'text',
+      label: 'Kategorie Name',
+      admin: { 
+        description: 'Bitte geben Sie den Namen der Kategorie an, zum Beispiel "Pizza".'
+      },
   },
     {
       name: 'published',
       type: 'checkbox',
       defaultValue: true,
+      label: 'Kategorie Veröffentlicht',
+      admin: { 
+        description: 'Wenn Sie diese Option aktivieren, wird die ausgewählte Kategorie auf der Website angezeigt' 
+      },
     },
     {
       name: 'restaurant',
       type: 'relationship',
+      label: 'Restaurant', 
+      admin: { 
+        description: 'Bitte wählen Sie das Restaurant aus, zu dem die ausgewählte Kategorie gehört.' 
+      },
       relationTo: 'restaurants',
       hasMany: false,
       required: true,
