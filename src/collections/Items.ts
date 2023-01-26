@@ -8,14 +8,18 @@ const Items: CollectionConfig = {
   slug: 'items',
   admin: {
     useAsTitle: 'name',
-  },
+  },// required
   access: {
     create: isAdminOrOwner(),
     read: isAdminOrOwnerOrAPI(),
     update: isAdminOrOwner(),
     delete: isAdminOrOwner(),
   },
-  fields: [
+  fields:[
+    {
+      name: 'name',
+    type: 'array',
+        fields: [
     {
         name: 'name',
         type: 'text',
@@ -70,6 +74,9 @@ const Items: CollectionConfig = {
           };
         },
     },
+  
+  ],
+  },
   ],
 };
 
