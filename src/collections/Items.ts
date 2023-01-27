@@ -8,7 +8,7 @@ const Items: CollectionConfig = {
   slug: 'items',
   admin: {
     useAsTitle: 'name',
-  },// required
+  },
   access: {
     create: isAdminOrOwner(),
     read: isAdminOrOwnerOrAPI(),
