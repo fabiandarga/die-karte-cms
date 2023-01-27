@@ -68,24 +68,44 @@ const Categories: CollectionConfig = {
         {
           name: "name",
           type: "text",
+          label: "Name",
+          admin: {
+            description: "Bitte geben Sie den Namen des Eintrags an, zum Beispiel 'Margherita'.",
+          },
         },
         {
           name: "description",
           type: "text",
+          label: "Beschreibung",
+          admin: {
+            description: "Bitte geben Sie eine Beschreibung des Eintrags an, zum Beispiel 'Tomatensoße, Mozzarella, Basilikum'.",
+          },
         },
         {
           name: "price",
           type: "number",
+          label: "Preis",
+          admin: {
+            description: "Bitte geben Sie den Preis des Eintrags an, zum Beispiel '5.50'.",
+          },
           defaultValue: 0,
         },
         {
           name: "additives",
           type: "relationship",
           relationTo: "additives",
+          label: "Zusatzstoffe & Allergene",
+          admin: {
+            description: "Bitte wählen Sie die Zusatzstoffe und Allergene aus, die zu diesem Eintrag gehören.",
+          },
           hasMany: true,
         },
         {
           name: "published",
+          label: "Veröffentlicht",
+          admin: {
+            description: "Wenn Sie diese Option aktivieren, wird der ausgewählte Eintrag auf der Website angezeigt.",
+          },
           type: "checkbox",
           defaultValue: true,
         },
