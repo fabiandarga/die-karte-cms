@@ -37,8 +37,10 @@ const Restaurants: CollectionConfig = {
       }
     },
     {
-      name: 'logoUrl',
-      type: 'text',
+        name: 'backgroundImage', // required
+        type: 'upload', // required
+        relationTo: 'media', // required
+        required: true,
     },
     {
       name: 'contact',

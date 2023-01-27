@@ -1,6 +1,6 @@
 import { buildConfig } from 'payload/config';
 import path from 'path';
-import { Categories, Users, Restaurants, Additives } from './collections';
+import { Categories, Users, Restaurants, Media, Additives } from './collections';
 
 export default buildConfig({
   serverURL: 'http://localhost:4000',
@@ -10,6 +10,7 @@ export default buildConfig({
   },
   collections: [
     Users,
+    Media,
     Restaurants,
     Categories,
     Additives,
