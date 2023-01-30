@@ -1,89 +1,131 @@
-import { CollectionConfig } from 'payload/types';
-import { isAdmin } from '../access/isAdmin';
-import { isAdminOrOwner } from '../access/isAdminOrOwner';
-import { isAdminOrOwnerOrAPI } from '../access/isAdminOrOwnerOrAPI';
+import { describe } from "node:test";
+import { CollectionConfig } from "payload/types";
+import { isAdmin } from "../access/isAdmin";
+import { isAdminOrOwner } from "../access/isAdminOrOwner";
+import { isAdminOrOwnerOrAPI } from "../access/isAdminOrOwnerOrAPI";
 
 const Restaurants: CollectionConfig = {
-  slug: 'restaurants',
+  slug: "restaurants",
+  labels: {
+    singular: "Restaurant",
+    plural: "Restaurants",
+  },
   admin: {
-    useAsTitle: 'name',
+    useAsTitle: "name",
   },
   access: {
     create: isAdmin,
-    read: isAdminOrOwnerOrAPI('id'),
-    update: isAdminOrOwner('id'),
+    read: isAdminOrOwnerOrAPI("id"),
+    update: isAdminOrOwner("id"),
     delete: isAdmin,
   },
   fields: [
     {
-        name: 'name',
-        type: 'text',
-        label: 'Name',
-    },
-    {
-      name: 'prefix',
-      type: 'text',
-      label: 'Prefix',
+      name: "name",
+      type: "text",
+      label: "Name",
       admin: {
-        description: 'Wird über dem Logo (Restaurant Name) angezeigt'
-      }
+        description:
+          "Bitte geben Sie den Namen des Restaurants oder des Geschäfts an.",
+      },
     },
     {
-      name: 'suffix',
-      type: 'text',
-      label: 'Untertitel',
+      name: "prefix",
+      type: "text",
+      label: "Prefix",
       admin: {
-        description: 'Wird unter dem Logo (Restaurant Name) angezeigt'
-      }
+        description: "Wird über dem Logo (Restaurant Name) angezeigt",
+      },
     },
     {
-        name: 'backgroundImage', // required
-        type: 'upload', // required
-        relationTo: 'media', // required
-        required: true,
+      name: "suffix",
+      type: "text",
+      label: "Untertitel",
+      admin: {
+        description:
+          "Der Untertitel wird unter dem Namen des Restaurants (Logo) angezeigt.",
+      },
     },
     {
-      name: 'contact',
-      type: 'group',
+      name: "backgroundImage", // required
+      type: "upload", // required
+      relationTo: "media", // required
+      required: true,
+      label: "Logo",
+      admin: {
+        description:
+          "Bitte geben Sie die URL des Logos des Restaurants oder des Geschäfts ein. Wenn Sie noch keine URL für Ihr Logo haben, kontaktieren Sie bitte den Webentwickler.",
+      },
+    },
+    {
+      name: "contact",
+      label: "Kontakt",
+      admin: {
+        description:
+          "Die Angabe von Kontaktinformationen ist optional und werden nur angezeigt, wenn Sie diese hier eingeben.",
+      },
+      type: "group",
       fields: [
         {
-          name: 'telephone',
-          type: 'text',
+          name: "telephone",
+          type: "text",
+          label: "Telefon",
+          admin: {
+            description:
+              "Bitte geben Sie die Kontakttelefonnummer des Restaurants oder des Geschäfts ein.",
+          },
         },
         {
-          name: 'fax',
-          type: 'text',
+          name: "fax",
+          type: "text",
+          label: "Fax",
+          admin: {
+            description:
+              "Bitte geben Sie die Faxnummer des Restaurants oder des Geschäfts ein.",
+          },
         },
         {
-          name: 'email',
-          type: 'text',
-        }
-      ]
+          name: "email",
+          type: "text",
+          label: "E-Mail",
+          admin: {
+            description:
+              "Bitte geben Sie die E-Mail-Adresse des Restaurants oder des Geschäfts ein.",
+          },
+        },
+      ],
     },
     {
-      name: 'address',
-      type: 'array',
-      fields: [
-        {
-          name: 'line',
-          type: 'text'
-        }
-      ]
-    },
-    {
-      name: 'socialmedia',
-      type: 'group',
+      name: "address",
+      type: "array",
+      label: "Adresse",
       admin: {
-        description: 'Social Media Links (z.b. "https://www.facebook.com/t3nMagazin/")'
+        description:
+          "Die Angabe von Adressen ist optional und werden nur angezeigt, wenn Sie diese hier eingeben.",
       },
       fields: [
-        { name: 'facebook', type: 'text'},
-        { name: 'twitter', type: 'text'},
-        { name: 'instagram', type: 'text'},
-        { name: 'linkedin', type: 'text'},
-        { name: 'tiktok', type: 'text'},
+        {
+          name: "line",
+          type: "text",
+        },
       ],
-    }
+    },
+    {
+      name: "socialmedia",
+      type: "group",
+      label: "Social Media Links",
+      admin: {
+        description:
+          'Hier können Sie die Links zu Ihren Social Media-Profilen hinzufügen (z.B. "https://www.facebook.com/t3nMagazin/").',
+      },
+      fields: [
+        { name: "facebook", type: "text" },
+        { name: "twitter", type: "text" },
+        { name: "instagram", type: "text" },
+        { name: "linkedin", type: "text" },
+        { name: "tiktok", type: "text" },
+      ],
+    },
   ],
 };
 
