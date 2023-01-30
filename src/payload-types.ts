@@ -30,7 +30,8 @@ export interface Restaurant {
   id: string;
   name?: string;
   prefix?: string;
-  logoUrl?: string;
+  suffix?: string;
+  logoUrl?: string | Media;
   contact: {
     telephone?: string;
     fax?: string;
@@ -52,6 +53,47 @@ export interface Restaurant {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "media".
+ */
+export interface Media {
+  id: string;
+  url?: string;
+  filename?: string;
+  mimeType?: string;
+  filesize?: number;
+  width?: number;
+  height?: number;
+  sizes: {
+    thumbnail: {
+      url?: string;
+      width?: number;
+      height?: number;
+      mimeType?: string;
+      filesize?: number;
+      filename?: string;
+    };
+    card: {
+      url?: string;
+      width?: number;
+      height?: number;
+      mimeType?: string;
+      filesize?: number;
+      filename?: string;
+    };
+    tablet: {
+      url?: string;
+      width?: number;
+      height?: number;
+      mimeType?: string;
+      filesize?: number;
+      filename?: string;
+    };
+  };
+  createdAt: string;
+  updatedAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "categories".
  */
 export interface Category {
@@ -59,22 +101,14 @@ export interface Category {
   name?: string;
   published?: boolean;
   restaurant: string | Restaurant;
-  createdAt: string;
-  updatedAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "items".
- */
-export interface Item {
-  id: string;
-  name?: string;
-  description?: string;
-  price?: number;
-  additives?: string[] | Additive[];
-  published?: boolean;
-  restaurant: string | Restaurant;
-  category?: string | Category;
+  items: {
+    name?: string;
+    description?: string;
+    price?: number;
+    additives?: string[] | Additive[];
+    published?: boolean;
+    id?: string;
+  }[];
   createdAt: string;
   updatedAt: string;
 }
