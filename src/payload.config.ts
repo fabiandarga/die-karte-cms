@@ -1,6 +1,19 @@
 import { buildConfig } from 'payload/config';
 import path from 'path';
 import { Categories, Users, Restaurants, Media, Additives } from './collections';
+import { s3Adapter } from '@payloadcms/plugin-cloud-storage/s3';
+import { cloudStorage } from '@payloadcms/plugin-cloud-storage';
+
+const adapter = s3Adapter({
+  config: {
+    credentials: {
+      accessKeyId: process.env.S3_ACCESS_KEY_ID,
+      secretAccessKey: process.env.S3_SECRET_ACCESS_KEY,
+    },
+    region : process.env.S3_REGION,
+  },
+  bucket: process.env.S3_BUCKET,
+})
 
 export default buildConfig({
   serverURL: 'http://localhost:4000',
@@ -21,4 +34,13 @@ export default buildConfig({
   graphQL: {
     schemaOutputFile: path.resolve(__dirname, 'generated-schema.graphql'),
   },
+  plugins: [
+    cloudStorage({
+      collections: {
+        'media': {
+          adapter: adapter, 
+        },
+      },
+    }),
+  ],
 });
