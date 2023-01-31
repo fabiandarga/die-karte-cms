@@ -3,6 +3,7 @@ import path from 'path';
 import { Categories, Users, Restaurants, Media, Additives } from './collections';
 import { s3Adapter } from '@payloadcms/plugin-cloud-storage/s3';
 import { cloudStorage } from '@payloadcms/plugin-cloud-storage';
+import { seed } from './seed';
 
 const adapter = s3Adapter({
   config: {
@@ -33,6 +34,11 @@ export default buildConfig({
   },
   graphQL: {
     schemaOutputFile: path.resolve(__dirname, 'generated-schema.graphql'),
+  },
+  onInit: async (payload) => {
+    if (process.env.PAYLOAD_SEED) {
+      await seed(payload);
+    }
   },
   plugins: [
     cloudStorage({

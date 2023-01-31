@@ -47,10 +47,10 @@ const Restaurants: CollectionConfig = {
       },
     },
     {
-      name: "logoImage", // required
+      name: "logoImage",
       type: "upload", // required
       relationTo: "media", // required
-      required: true,
+      required: false,
       label: "Logo",
       admin: {
         description:
