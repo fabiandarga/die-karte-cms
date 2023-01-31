@@ -5,7 +5,6 @@ export const seed = async (payload: Payload): Promise<void> => {
   const res1 = await payload.create<Restaurant>({
     collection: "restaurants",
     data: {
-      id: "123456789",
       name: "Peter Parker Restaurant",
       prefix: "Seit 2001",
       contact: {
