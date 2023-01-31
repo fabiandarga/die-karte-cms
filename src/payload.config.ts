@@ -36,7 +36,6 @@ export default buildConfig({
     schemaOutputFile: path.resolve(__dirname, 'generated-schema.graphql'),
   },
   onInit: async (payload) => {
-    // If the `env` var `PAYLOAD_SEED` is set, seed the db
     if (process.env.PAYLOAD_SEED) {
       await seed(payload);
     }
