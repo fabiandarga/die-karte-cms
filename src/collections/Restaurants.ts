@@ -50,7 +50,7 @@ const Restaurants: CollectionConfig = {
       name: "logoUrl", // required
       type: "upload", // required
       relationTo: "media", // required
-      required: true,
+      required: false,
       label: "Logo",
       admin: {
         description:

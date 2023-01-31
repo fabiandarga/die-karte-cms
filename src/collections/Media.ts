@@ -11,18 +11,6 @@ const Media: CollectionConfig = {
         height: 300,
         position: 'centre',
       },
-      {
-        name: 'card',
-        width: 768,
-        height: 1024,
-        position: 'centre',
-      },
-      {
-        name: 'tablet',
-        width: 1024,
-        height: null,
-        position: 'centre',
-      },
     ],
     adminThumbnail: 'thumbnail',
     mimeTypes: ['image/*'],

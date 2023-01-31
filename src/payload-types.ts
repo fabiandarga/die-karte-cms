@@ -14,7 +14,7 @@ export interface User {
   id: string;
   role?: 'admin' | 'owner' | 'editor';
   restaurants?: string[] | Restaurant[];
-  email?: string;
+  email: string;
   resetPasswordToken?: string;
   resetPasswordExpiration?: string;
   loginAttempts?: number;
@@ -65,22 +65,6 @@ export interface Media {
   height?: number;
   sizes: {
     thumbnail: {
-      url?: string;
-      width?: number;
-      height?: number;
-      mimeType?: string;
-      filesize?: number;
-      filename?: string;
-    };
-    card: {
-      url?: string;
-      width?: number;
-      height?: number;
-      mimeType?: string;
-      filesize?: number;
-      filename?: string;
-    };
-    tablet: {
       url?: string;
       width?: number;
       height?: number;
