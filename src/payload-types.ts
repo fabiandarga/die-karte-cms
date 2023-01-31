@@ -30,7 +30,7 @@ export interface Restaurant {
   id: string;
   name?: string;
   prefix?: string;
-  logoUrl?: string;
+  logoImage?: string;
   contact: {
     telephone?: string;
     fax?: string;
