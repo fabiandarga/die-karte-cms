@@ -31,7 +31,7 @@ export interface Restaurant {
   name?: string;
   prefix?: string;
   suffix?: string;
-  logoUrl?: string | Media;
+  logoImage?: string;
   contact: {
     telephone?: string;
     fax?: string;
