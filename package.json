@@ -11,7 +11,7 @@
     "build:server": "tsc",
     "web": "npm start",
     "start": "npm run serve",
-    "build": "npm copyfiles && npm build:payload && npm build:server",
+    "build": "npm run copyfiles && npm run build:payload && npm run build:server",
     "serve": "cross-env PAYLOAD_CONFIG_PATH=dist/payload.config.js NODE_ENV=production node dist/server.js",
     "copyfiles": "copyfiles -u 1 \"src/**/*.{html,css,scss,ttf,woff,woff2,eot,svg,jpg,png}\" dist/",
     "generate:types": "cross-env PAYLOAD_CONFIG_PATH=src/payload.config.ts payload generate:types",
