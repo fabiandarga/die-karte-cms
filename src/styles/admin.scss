@@ -1,0 +1,39 @@
+body {
+   font-family: "Roboto Condensed", sans-serif;;
+  }
+ 
+.pill{ 
+   border-radius: 0;
+}
+
+.btn--style-secondary {
+  border-radius: 0;
+}
+
+.card__click{ 
+   border: 1px solid #c60c1a;
+   border-radius: 0;
+}
+
+.icon--plus {
+   color: #c60c1a;
+}
+
+.btn--style-primary {
+   color: #c60c1a;
+   background-color: transparent;
+   border: 2px solid #c60c1a;
+   border-radius: 0;
+}
+
+.btn + .btn--style-primary:hover {
+   color: #ffffff;
+   background-color:#c60c1a ;
+   border: 2px solid #ffffff;
+}
+
+#action-save:hover {
+   color: #ffffff;
+   background-color:#c60c1a ;
+   border: 2px solid #ffffff;
+}
