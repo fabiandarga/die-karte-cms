@@ -1,5 +1,6 @@
 import express from 'express';
 import payload from 'payload';
+import { getRestaurantBySlug } from './controller/RestaurantController';
 
 require('dotenv').config();
 const app = express();
@@ -20,7 +21,6 @@ payload.init({
 })
 
 // Add your own express routes here
-
-// Add route for endpoint getBySlug() /api/restaurants/slug/:slug
+app.get('/api/restaurants/slug/:slug', getRestaurantBySlug);
 
 app.listen(process.env.PORT);
