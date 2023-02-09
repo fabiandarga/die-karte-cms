@@ -1,6 +1,6 @@
 import { describe } from "node:test";
 import { CollectionConfig } from "payload/types";
-import { isAdmin } from "../access/isAdmin";
+import { isAdmin, isAdminFieldLevel } from "../access/isAdmin";
 import { isAdminOrOwner } from "../access/isAdminOrOwner";
 import { isAdminOrOwnerOrAPI } from "../access/isAdminOrOwnerOrAPI";
 
@@ -27,6 +27,18 @@ const Restaurants: CollectionConfig = {
       admin: {
         description:
           "Bitte geben Sie den Namen des Restaurants oder des Geschäfts an.",
+      },
+    },
+    {
+      name: "slug",
+      type: "text",
+      label: "Slug",
+      admin: {
+        description:
+          "Ein ID String. U.a. auch als subdomain benutzt z.B. 'my-slug.die-karte.de'",
+      },
+      access: {
+        read: isAdminFieldLevel,
       },
     },
     {

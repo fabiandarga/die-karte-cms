@@ -21,4 +21,6 @@ payload.init({
 
 // Add your own express routes here
 
+// Add route for endpoint getBySlug() /api/restaurants/slug/:slug
+
 app.listen(process.env.PORT);
