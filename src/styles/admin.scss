@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
+
+$primaryColor: #c60c1a; 
+$white: #fff; 
+
+@mixin borderAndBackground-color(
+  $color,
+  $background-color,
+  $colored-border,
+) {
+   color: $color;
+   background-color:$background-color ;
+   border: 2px solid  $colored-border;
+}
+
+body {
+   font-family: "Roboto Condensed", sans-serif;;
+  }
+
+.btn { 
+   border-radius: 0;
+}  
+ 
+.pill{ 
+   border-radius: 0;
+}
+
+.card__click{ 
+   border: 1px solid $primaryColor;
+}
+
+.icon--plus {
+   color: $primaryColor;
+}
+
+.btn--style-primary {
+   @include borderAndBackground-color($primaryColor, transparent, $primaryColor);
+}
+
+.btn + .btn--style-primary:hover {
+   @include borderAndBackground-color( $white, $primaryColor, $white);
+}
+
+#action-save:hover {
+   @include borderAndBackground-color( $white, $primaryColor, $white);
+}
