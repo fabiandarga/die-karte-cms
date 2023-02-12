@@ -18,6 +18,9 @@ services:
       PORT: 3000
       NODE_ENV: development
       PAYLOAD_SECRET: TESTING
+      SERVER_URL: http://localhost:4000
+      # PAYLOAD_SEED: "true"
+      # PAYLOAD_DROP_DATABASE: "true"
 
   mongo:
     image: mongo:latest
