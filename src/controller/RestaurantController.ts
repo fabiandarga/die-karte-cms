@@ -7,7 +7,7 @@ type ModifiedRequest = Request & { payload: Payload };
 export async function getRestaurantBySlug({ payload, params }: ModifiedRequest, res: Response) {
     const { slug } = params;
     const result = await payload.find<Restaurant>({
-      collection: 'restaurant',
+      collection: 'restaurants',
       depth: 2,
       page: 1,
       limit: 1,
