@@ -6,6 +6,8 @@ export const seed = async (payload: Payload): Promise<void> => {
     collection: "restaurants",
     data: {
       name: "Peter Parker Restaurant",
+      slug: "peter-parkers",
+      theme: "cafe-hugo",
       prefix: "Seit 2001",
       contact: {
         telephone: "123456789",
@@ -26,6 +28,9 @@ export const seed = async (payload: Payload): Promise<void> => {
   });
 
   const restaurantId = res1.id;
+  if (!res1.id) {
+    throw new Error("No restaurant created");
+  }
 
   await payload.create<Category>({
     collection: "categories",
