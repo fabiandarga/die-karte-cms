@@ -38,13 +38,66 @@ export const seed = async (payload: Payload): Promise<void> => {
       name: "Pizza",
       published: true,
       restaurant: restaurantId,
-      items: {
+      items: [{
         name: "Pizza Margherita",
-        description: "Pizza Margherita",
+        description: "Just Pizza",
         price: 10,
-        additives: "Tomato Sauce",
+        additives: [],
         published: true,
       },
+      {
+        name: "Pizza Salami",
+        description: "Pizza mit bester Salami",
+        price: 12,
+        additives: [],
+        published: true,
+      },
+      {
+        name: "Pizza Thuna",
+        description: "Frischer Thunfisch und Kapern",
+        price: 13.50,
+        additives: [],
+        published: true,
+      },
+      {
+        name: "Pizza Quadro Frommagie",
+        description: "Pizza mit vier Käsesorten",
+        price: 13,
+        additives: [],
+        published: true,
+      },
+      {
+        name: "Pizza Hawaii",
+        description: "Schinken und frische Ananas",
+        price: 12.50,
+        additives: [],
+        published: true,
+      }],
+    },
+  });
+
+  await payload.create<Category>({
+    collection: "categories",
+    data: {
+      name: "Drinks",
+      published: true,
+      restaurant: restaurantId,
+      items: [{
+        name: "Spider Cola",
+        price: 3.99,
+        additives: [],
+        published: true,
+      },{
+        name: "Spider Lemon",
+        price: 3.99,
+        additives: [],
+        published: true,
+      },{
+        name: "Spider Orange",
+        price: 3.99,
+        additives: [],
+        published: true,
+      },],
     },
   });
 
