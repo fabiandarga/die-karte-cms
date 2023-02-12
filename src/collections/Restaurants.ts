@@ -42,6 +42,14 @@ const Restaurants: CollectionConfig = {
       },
     },
     {
+      name: "theme",
+      type: "text",
+      label: "Theme",
+      access: {
+        read: isAdminFieldLevel,
+      },
+    },
+    {
       name: "prefix",
       type: "text",
       label: "Prefix",
