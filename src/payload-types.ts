@@ -29,9 +29,11 @@ export interface User {
 export interface Restaurant {
   id: string;
   name?: string;
+  slug?: string;
+  theme?: string;
   prefix?: string;
   suffix?: string;
-  logoImage?: string;
+  logoImage?: string | Media;
   contact: {
     telephone?: string;
     fax?: string;

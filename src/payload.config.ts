@@ -51,7 +51,12 @@ export default buildConfig({
   },
   onInit: async (payload) => {
     if (process.env.PAYLOAD_SEED) {
-      await seed(payload);
+      try {
+        await seed(payload);
+        console.log('Seeding finished');
+      } catch (err) {
+        console.error('Could not complete seeding data', err);
+      }
     }
   },
   plugins: [

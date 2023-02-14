@@ -17,7 +17,7 @@ services:
       MONGODB_URI: mongodb://mongo:27017/payload
       PORT: 3000
       NODE_ENV: development
-      PAYLOAD_SECRET: a236d219f647402c525c8517
+      PAYLOAD_SECRET: TESTING
       S3_BUCKET: die-karte-payload-cms
       S3_ACCESS_KEY_ID: AKIA2RET2DDLTCC23YEJ
       S3_SECRET_ACCESS_KEY: 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
