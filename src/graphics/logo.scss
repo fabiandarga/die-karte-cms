@@ -1,0 +1,11 @@
+.LogoDieKarte { 
+    width: 150px;
+    height: 100%;
+}
+
+@media screen and (min-width: 768px) {
+    .LogoDieKarte {
+        width: 200px;
+    }
+}
+    

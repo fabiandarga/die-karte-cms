@@ -3,6 +3,8 @@ import path from 'path';
 import { Categories, Users, Restaurants, Media, Additives } from './collections';
 import { s3Adapter } from '@payloadcms/plugin-cloud-storage/s3';
 import { cloudStorage } from '@payloadcms/plugin-cloud-storage';
+import Logo from './graphics/Logo';
+import Icon from './graphics/Logo';
 import { seed } from './seed';
 
 const adapter = s3Adapter({
@@ -21,6 +23,18 @@ export default buildConfig({
   cors: '*',
   admin: {
     user: Users.slug,
+    css: path.resolve(__dirname, './styles/admin.scss'),
+    meta: {
+      titleSuffix: 'Die Karte',
+      favicon: '/assets/favicon-svg.svg',
+      ogImage: '/assets/logo-svg.svg',
+    },
+    components: {
+      graphics: {
+        Logo,
+        Icon,
+      },
+    },
   },
   collections: [
     Users,
