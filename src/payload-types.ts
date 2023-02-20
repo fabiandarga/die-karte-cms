@@ -110,3 +110,10 @@ export interface Additive {
   createdAt: string;
   updatedAt: string;
 }
+
+export interface Themes { 
+  id: string;
+  name?: string;
+  createdAt: string;
+  updatedAt: string;
+}

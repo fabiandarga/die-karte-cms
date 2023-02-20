@@ -1,6 +1,6 @@
 import { buildConfig } from 'payload/config';
 import path from 'path';
-import { Categories, Users, Restaurants, Media, Additives } from './collections';
+import { Categories, Users, Restaurants, Media, Additives, Themes } from './collections';
 import { s3Adapter } from '@payloadcms/plugin-cloud-storage/s3';
 import { cloudStorage } from '@payloadcms/plugin-cloud-storage';
 import Logo from './graphics/Logo';
@@ -42,6 +42,7 @@ export default buildConfig({
     Restaurants,
     Categories,
     Additives,
+    Themes,
   ],
   typescript: {
     outputFile: path.resolve(__dirname, 'payload-types.ts'),

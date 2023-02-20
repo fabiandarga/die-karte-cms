@@ -42,12 +42,18 @@ const Restaurants: CollectionConfig = {
       },
     },
     {
-      name: "theme",
-      type: "text",
+      name: "selectedFeatures",
+      type: "relationship",
       label: "Theme",
+      hasMany: false,
+      admin: {
+        description:
+          "Bitte wählen Sie das Theme aus, das Sie für dieses Restaurant verwenden möchten.",
+      },
       access: {
         read: isAdminFieldLevel,
       },
+      relationTo: "themes",
     },
     {
       name: "prefix",
