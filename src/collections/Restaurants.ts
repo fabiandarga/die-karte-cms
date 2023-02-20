@@ -42,7 +42,7 @@ const Restaurants: CollectionConfig = {
       },
     },
     {
-      name: "selectedFeatures",
+      name: "theme",
       type: "relationship",
       label: "Theme",
       hasMany: false,
