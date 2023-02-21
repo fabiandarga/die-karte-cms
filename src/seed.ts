@@ -1,13 +1,21 @@
 import { Payload } from "payload";
-import { User, Restaurant, Category } from "./payload-types";
+import { User, Restaurant, Category, Themes  } from "./payload-types";
 
 export const seed = async (payload: Payload): Promise<void> => {
+  
+  const theme = await payload.create<Themes>({ 
+    collection: "themes",
+    data: {
+      name: "cafe-hugo",
+    },
+  });
+
   const res1 = await payload.create<Restaurant>({
     collection: "restaurants",
     data: {
       name: "Peter Parker Restaurant",
       slug: "peter-parkers",
-      theme: "cafe-hugo",
+      theme: theme.id,
       prefix: "Seit 2001",
       contact: {
         telephone: "123456789",
