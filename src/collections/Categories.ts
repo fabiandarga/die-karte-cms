@@ -52,7 +52,7 @@ const Categories: CollectionConfig = {
         }
       },
     },
-   
+  
     {
       name: "items",
       type: "array",

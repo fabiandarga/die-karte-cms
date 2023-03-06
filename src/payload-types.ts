@@ -117,3 +117,10 @@ export interface Themes {
   createdAt: string;
   updatedAt: string;
 }
+
+export interface  ShowItemImageMethods { 
+  id: string;
+  name?: string;
+  createdAt: string;
+  updatedAt: string;
+}
