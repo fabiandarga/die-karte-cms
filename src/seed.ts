@@ -6,24 +6,25 @@ export const seed = async (payload: Payload): Promise<void> => {
   const theme = await payload.create<Themes>({ 
     collection: "themes",
     data: {
-      name: "cafe-hugo",
+      name: "donuts",
     },
   });
 
   const res1 = await payload.create<Restaurant>({
     collection: "restaurants",
     data: {
-      name: "Peter Parker Restaurant",
+      name: "Donuts",
       slug: "peter-parkers",
       theme: theme.id,
-      prefix: "Seit 2001",
+      prefix: "",
+      suffix: "",
       contact: {
-        telephone: "123456789",
-        fax: "123456789",
-        email: "peter@parker.com",
+        telephone: "",
+        fax: "",
+        email: "",
       },
       address: {
-        line: "123 Main St",
+        line: "",
       },
       socialmedia: {
         facebook: "https://www.facebook.com/peterparker",
