@@ -3,29 +3,35 @@ import { User, Restaurant, Category, Themes  } from "./payload-types";
 
 export const seed = async (payload: Payload): Promise<void> => {
   
-  const theme = await payload.create<Themes>({ 
-    collection: "themes",
-    data: {
-      name: "donuts",
-    },
-  });
+  const themes = ['cafe-hugo', 'chalk-pink', 'coffee-light', 'greek-blue', 'peaches', 'vegav'];
+  const theme = await Promise.all(
+    themes.map(name => {
+      return payload.create<Themes>({ 
+        collection: "themes",
+        data: {
+          name,
+        },
+      });
+    }
+  );
 
   const res1 = await payload.create<Restaurant>({
     collection: "restaurants",
     data: {
-      name: "Donuts",
+      name: "Peter Parkers",
       slug: "peter-parkers",
-      theme: theme.id,
-      prefix: "",
-      suffix: "",
+      theme: theme[0].id,
+      prefix: "Great Taste",
+      suffix: "Great Responsibility",
       contact: {
-        telephone: "",
+        telephone: "040 / 1234 5678",
         fax: "",
-        email: "",
+        email: "info@parkers.de",
       },
-      address: {
-        line: "",
-      },
+      address: [
+        { line: 'Am Stadtzentrum 51a' },
+        { line: '34567 Hamburg' },
+      ],
       socialmedia: {
         facebook: "https://www.facebook.com/peterparker",
         twitter: "https://www.twitter.com/peterparker",
