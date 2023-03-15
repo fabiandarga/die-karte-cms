@@ -12,7 +12,7 @@ export const seed = async (payload: Payload): Promise<void> => {
           name,
         },
       });
-    }
+    })
   );
 
   const res1 = await payload.create<Restaurant>({
@@ -41,15 +41,18 @@ export const seed = async (payload: Payload): Promise<void> => {
       },
     },
   });
+
   if (!res1.id) {
     throw new Error("Restaurant 1 not created");
   }
+
   const res2 = await payload.create<Restaurant>({
     collection: "restaurants",
     data: {
       name: "Simple Place",
       slug: "simple",
       theme: theme[1].id,
+    },
   });
 
   if (!res2.id) {
