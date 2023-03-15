@@ -66,6 +66,17 @@ const Categories: CollectionConfig = {
       },
       fields: [
         {
+          name: "image",
+          type: "upload", // required
+          relationTo: "media", // required
+          required: false,
+          label: "image",
+          admin: {
+            description:
+              "Bitte wählen Sie ein Bild aus, das Sie für diesen Eintrag verwenden möchten.",
+          },
+        },
+        {
           name: "name",
           type: "text",
           label: "Name",
