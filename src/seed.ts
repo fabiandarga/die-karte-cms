@@ -41,53 +41,72 @@ export const seed = async (payload: Payload): Promise<void> => {
       },
     },
   });
-
-  const restaurantId = res1.id;
   if (!res1.id) {
-    throw new Error("No restaurant created");
+    throw new Error("Restaurant 1 not created");
   }
+  const res2 = await payload.create<Restaurant>({
+    collection: "restaurants",
+    data: {
+      name: "Simple Place",
+      slug: "simple",
+      theme: theme[1].id,
+  });
+
+  if (!res2.id) {
+    throw new Error("Restaurant 2 not created");
+  }
+
+  const menu_data = {
+    name: "Pizza",
+    published: true,
+    restaurant: res1.id,
+    items: [{
+      name: "Pizza Margherita",
+      description: "Just Pizza",
+      price: 10,
+      additives: [],
+      published: true,
+    },
+    {
+      name: "Pizza Salami",
+      description: "Pizza mit bester Salami",
+      price: 12,
+      additives: [],
+      published: true,
+    },
+    {
+      name: "Pizza Thuna",
+      description: "Frischer Thunfisch und Kapern",
+      price: 13.50,
+      additives: [],
+      published: true,
+    },
+    {
+      name: "Pizza Quadro Frommagie",
+      description: "Pizza mit vier Käsesorten",
+      price: 13,
+      additives: [],
+      published: true,
+    },
+    {
+      name: "Pizza Hawaii",
+      description: "Schinken und frische Ananas",
+      price: 12.50,
+      additives: [],
+      published: true,
+    }],
+  };
+
+  await payload.create<Category>({
+    collection: "categories",
+    data: menu_data,
+  });
 
   await payload.create<Category>({
     collection: "categories",
     data: {
-      name: "Pizza",
-      published: true,
-      restaurant: restaurantId,
-      items: [{
-        name: "Pizza Margherita",
-        description: "Just Pizza",
-        price: 10,
-        additives: [],
-        published: true,
-      },
-      {
-        name: "Pizza Salami",
-        description: "Pizza mit bester Salami",
-        price: 12,
-        additives: [],
-        published: true,
-      },
-      {
-        name: "Pizza Thuna",
-        description: "Frischer Thunfisch und Kapern",
-        price: 13.50,
-        additives: [],
-        published: true,
-      },
-      {
-        name: "Pizza Quadro Frommagie",
-        description: "Pizza mit vier Käsesorten",
-        price: 13,
-        additives: [],
-        published: true,
-      },
-      {
-        name: "Pizza Hawaii",
-        description: "Schinken und frische Ananas",
-        price: 12.50,
-        additives: [],
-        published: true,
-      }],
+      ...menu_data,
+      restaurant: res2.id,
     },
   });
 
@@ -96,7 +115,7 @@ export const seed = async (payload: Payload): Promise<void> => {
     data: {
       name: "Drinks",
       published: true,
-      restaurant: restaurantId,
+      restaurant: res1.id,
       items: [{
         name: "Spider Cola",
         price: 3.99,
@@ -120,7 +139,7 @@ export const seed = async (payload: Payload): Promise<void> => {
     collection: "users",
     data: {
       role: "admin",
-      restaurants: [restaurantId],
+      restaurants: [res1.id, res2.id],
       email: "peter@parker.com",
       password: "test",
     },
