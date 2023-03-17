@@ -1,17 +1,11 @@
-import { TypeWithID } from 'payload/dist/collections/config/types';
 import type { FieldHook } from 'payload/types';
 import { Category } from '../payload-types';
-import payload, { Payload } from 'payload';
+import payload from 'payload';
 import { CollectionAfterDeleteHook } from 'payload/types';
 
+type OrderFieldHook = FieldHook<Category, number, Category>;
 
-type OrderFieldHook<T extends TypeWithID> = FieldHook<T, number, T>;
-
-export const sortedCategoriesHook: OrderFieldHook<Category> = async (
-  args
-) => {
-  const { value, originalDoc, operation, req } = args;
-
+export const sortedCategoriesHook: OrderFieldHook = async ({ value, originalDoc, operation, req }) => {
   const newOrder = value < 1 ? 1 : value; // prevent zero or negative
 
   if (operation == 'create') {

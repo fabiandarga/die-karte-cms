@@ -72,22 +72,25 @@ const Categories: CollectionConfig = {
         update: isAdminOrOwnerField(),
       },
     },
+    /*
+     * Sub Collection: Items
+     */
     {
       name: "items",
       type: "array",
       label: "Einträge",
-      admin: {  // <- besondere config für Sachen, die nur im Adminbereich benutzt werden.
+      admin: {
         components: {
                 RowLabel: ({ data }) => {
-                  return data?.name || '-';  // <- String oder React Komponente, die als Label für jeden Eintrag benutzt wird.
+                  return data?.name || '-';
                 },
               },
       },
       fields: [
         {
           name: "image",
-          type: "upload", // required
-          relationTo: "media", // required
+          type: "upload",
+          relationTo: "media",
           required: false,
           label: "image",
           admin: {
@@ -138,18 +141,6 @@ const Categories: CollectionConfig = {
           },
           type: "checkbox",
           defaultValue: true,
-        },
-        {
-          name: "order",
-          label: "Reihenfolge",
-          admin: {
-            description: "Niedriege Werte werden weiter oben angezeigt, hohe Werte unten.",
-          },
-          type: "number",
-          defaultValue: 1000,
-          hooks: {
-
-          }
         },
       ],
     },
