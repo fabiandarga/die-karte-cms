@@ -1,6 +1,7 @@
 import { CollectionConfig } from "payload/types";
-import { isAdminOrOwner } from "../access/isAdminOrOwner";
+import { isAdminOrOwner, isAdminOrOwnerField } from "../access/isAdminOrOwner";
 import { isAdminOrOwnerOrAPI } from "../access/isAdminOrOwnerOrAPI";
+import { afterDeleteHook, sortedCategoriesHook } from "../hooks/sortedItems";
 import { User } from "../payload-types";
 
 const Categories: CollectionConfig = {
@@ -17,6 +18,9 @@ const Categories: CollectionConfig = {
     read: isAdminOrOwnerOrAPI(),
     update: isAdminOrOwner(),
     delete: isAdminOrOwner(),
+  },
+  hooks: {
+    afterDelete: [ afterDeleteHook ],
   },
   fields: [
     {
@@ -52,23 +56,41 @@ const Categories: CollectionConfig = {
         }
       },
     },
-   
+    {
+      name: "order",
+      label: "Reihenfolge",
+      admin: {
+        description: "Niedrige Werte werden weiter oben angezeigt, hohe Werte unten.",
+      },
+      type: "number",
+      hooks: {
+        beforeChange: [ sortedCategoriesHook ],
+      },
+      access: {
+        create: () => false,
+        read: () => true,
+        update: isAdminOrOwnerField(),
+      },
+    },
+    /*
+     * Sub Collection: Items
+     */
     {
       name: "items",
       type: "array",
       label: "Einträge",
-      admin: {  // <- besondere config für Sachen, die nur im Adminbereich benutzt werden.
+      admin: {
         components: {
                 RowLabel: ({ data }) => {
-                  return data?.name || '-';  // <- String oder React Komponente, die als Label für jeden Eintrag benutzt wird.
+                  return data?.name || '-';
                 },
               },
       },
       fields: [
         {
           name: "image",
-          type: "upload", // required
-          relationTo: "media", // required
+          type: "upload",
+          relationTo: "media",
           required: false,
           label: "image",
           admin: {
