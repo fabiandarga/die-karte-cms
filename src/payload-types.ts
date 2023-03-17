@@ -30,7 +30,7 @@ export interface Restaurant {
   id: string;
   name?: string;
   slug?: string;
-  theme?: string;
+  theme?: string | Theme;
   prefix?: string;
   suffix?: string;
   logoImage?: string | Media;
@@ -50,6 +50,16 @@ export interface Restaurant {
     linkedin?: string;
     tiktok?: string;
   };
+  createdAt: string;
+  updatedAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "themes".
+ */
+export interface Theme {
+  id: string;
+  name?: string;
   createdAt: string;
   updatedAt: string;
 }
@@ -87,12 +97,15 @@ export interface Category {
   name?: string;
   published?: boolean;
   restaurant: string | Restaurant;
+  order?: number;
   items: {
+    image?: string | Media;
     name?: string;
     description?: string;
     price?: number;
     additives?: string[] | Additive[];
     published?: boolean;
+    order?: number;
     id?: string;
   }[];
   createdAt: string;
@@ -107,13 +120,6 @@ export interface Additive {
   name?: string;
   publicId?: string;
   type?: 'additive' | 'allergen';
-  createdAt: string;
-  updatedAt: string;
-}
-
-export interface Themes { 
-  id: string;
-  name?: string;
   createdAt: string;
   updatedAt: string;
 }

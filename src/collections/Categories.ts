@@ -1,6 +1,7 @@
 import { CollectionConfig } from "payload/types";
-import { isAdminOrOwner } from "../access/isAdminOrOwner";
+import { isAdminOrOwner, isAdminOrOwnerField } from "../access/isAdminOrOwner";
 import { isAdminOrOwnerOrAPI } from "../access/isAdminOrOwnerOrAPI";
+import { afterDeleteHook, sortedCategoriesHook } from "../hooks/sortedItems";
 import { User } from "../payload-types";
 
 const Categories: CollectionConfig = {
@@ -17,6 +18,9 @@ const Categories: CollectionConfig = {
     read: isAdminOrOwnerOrAPI(),
     update: isAdminOrOwner(),
     delete: isAdminOrOwner(),
+  },
+  hooks: {
+    afterDelete: [ afterDeleteHook ],
   },
   fields: [
     {
@@ -52,7 +56,22 @@ const Categories: CollectionConfig = {
         }
       },
     },
-   
+    {
+      name: "order",
+      label: "Reihenfolge",
+      admin: {
+        description: "Niedrige Werte werden weiter oben angezeigt, hohe Werte unten.",
+      },
+      type: "number",
+      hooks: {
+        beforeChange: [ sortedCategoriesHook ],
+      },
+      access: {
+        create: () => false,
+        read: () => true,
+        update: isAdminOrOwnerField(),
+      },
+    },
     {
       name: "items",
       type: "array",
@@ -119,6 +138,18 @@ const Categories: CollectionConfig = {
           },
           type: "checkbox",
           defaultValue: true,
+        },
+        {
+          name: "order",
+          label: "Reihenfolge",
+          admin: {
+            description: "Niedriege Werte werden weiter oben angezeigt, hohe Werte unten.",
+          },
+          type: "number",
+          defaultValue: 1000,
+          hooks: {
+
+          }
         },
       ],
     },
